@@ -1,0 +1,48 @@
+######################## Mode 11 : 3_Naive_Bayes ###########################
+########################################################################
+
+Naive_Bayes
+Training for lambda =  2 Testing on  ['CVSplits/training00.data']
+Accuracy  0.7180851063829787  Good  405.0
+Training for lambda =  2 Testing on  ['CVSplits/training01.data']
+Accuracy  0.700354609929078  Good  395.0
+Training for lambda =  2 Testing on  ['CVSplits/training02.data']
+Accuracy  0.7021276595744681  Good  396.0
+Training for lambda =  2 Testing on  ['CVSplits/training03.data']
+Accuracy  0.7180851063829787  Good  405.0
+Training for lambda =  2 Testing on  ['CVSplits/training04.data']
+Accuracy  0.697508896797153  Good  392.0
+Training for lambda =  1.5 Testing on  ['CVSplits/training00.data']
+Accuracy  0.7198581560283688  Good  406.0
+Training for lambda =  1.5 Testing on  ['CVSplits/training01.data']
+Accuracy  0.6985815602836879  Good  394.0
+Training for lambda =  1.5 Testing on  ['CVSplits/training02.data']
+Accuracy  0.6968085106382979  Good  393.0
+Training for lambda =  1.5 Testing on  ['CVSplits/training03.data']
+Accuracy  0.7216312056737588  Good  407.0
+Training for lambda =  1.5 Testing on  ['CVSplits/training04.data']
+Accuracy  0.699288256227758  Good  393.0
+Training for lambda =  1 Testing on  ['CVSplits/training00.data']
+Accuracy  0.7287234042553191  Good  411.0
+Training for lambda =  1 Testing on  ['CVSplits/training01.data']
+Accuracy  0.7039007092198581  Good  397.0
+Training for lambda =  1 Testing on  ['CVSplits/training02.data']
+Accuracy  0.6985815602836879  Good  394.0
+Training for lambda =  1 Testing on  ['CVSplits/training03.data']
+Accuracy  0.7180851063829787  Good  405.0
+Training for lambda =  1 Testing on  ['CVSplits/training04.data']
+Accuracy  0.699288256227758  Good  393.0
+Training for lambda =  0.5 Testing on  ['CVSplits/training00.data']
+Accuracy  0.7304964539007093  Good  412.0
+Training for lambda =  0.5 Testing on  ['CVSplits/training01.data']
+Accuracy  0.7056737588652482  Good  398.0
+Training for lambda =  0.5 Testing on  ['CVSplits/training02.data']
+Accuracy  0.7039007092198581  Good  397.0
+Training for lambda =  0.5 Testing on  ['CVSplits/training03.data']
+Accuracy  0.7145390070921985  Good  403.0
+Training for lambda =  0.5 Testing on  ['CVSplits/training04.data']
+Accuracy  0.6957295373665481  Good  391.0
+Max mean accuracy was for  0.5  with accuracy  0.7100678932889124
+Accuracy  0.7782114975159687  Good  2193.0
+Final accuracy for Naive Bayes test =  0.7782114975159687  Best 
+[]

@@ -301,6 +301,10 @@ def crossValAux(typ, pri):
 
 def crossValOver(typ, pri, folder):
 	margins = [1.0, 0.1, 0.01]
+	if typ == 8:
+		margins = [10, 1, 0.1, 0.01, 0.001, 0.0001]
+	else:
+		margins = [0.1, 1, 10, 100, 1000, 10000]
 	maxAv = 0
 	bestMargin = 1.0
 	bestRs = 1.0
@@ -315,11 +319,16 @@ def crossValOver(typ, pri, folder):
 
 def crossVal2Over(typ, pri, margin, folder):
 	rCombs = [1.0, 0.1, 0.01]
+	if typ == 8:
+		rCombs = [10, 1, 0.1, 0.01, 0.001, 0.0001]
+	else:
+		rCombs = [1, 0.1, 0.01, 0.001, 0.0001, 0.00001]
+
 	trainFiles = ["CVSplits/training00.data", "CVSplits/training01.data", "CVSplits/training02.data", "CVSplits/training03.data", "CVSplits/training04.data"]
 	
 	for i in range(len(trainFiles)):
 		trainFiles[i] = folder + trainFiles[i]
-	ep = 3
+	ep = 10
 	allAvsSds = []
 	for r in rCombs:
 		rccuracy = []
@@ -386,8 +395,8 @@ def crossVal2Over(typ, pri, margin, folder):
 	return rCombs[maxJ], maxAv
 
 def devTestOver(typ, lRate, marg, folder):
-	training, num = parseFile([folder + "treeOut.train"])
-	testing, ignore = parseFile([folder + "treeOut.train"])
+	training, num = parseFile2([folder + "treeOut.train"])
+	testing, ignore = parseFile2([folder + "treeOut.train"])
 	devDatasets = [folder + "treeOut.train"]
 	
 	ws, epochAccuracy, c, wss = trainPerTestDev(training, num, 40, lRate, testing, typ, marg)
@@ -431,7 +440,7 @@ def devTest(typ, lRate, marg):
 def crossVal2(typ, pri, margin):
 	rCombs = [1.0, 0.1, 0.01]
 	trainFiles = ["CVSplits/training00.data", "CVSplits/training01.data", "CVSplits/training02.data", "CVSplits/training03.data", "CVSplits/training04.data"]
-	ep = 3
+	ep = 10
 	allAvsSds = []
 	for r in rCombs:
 		rccuracy = []
@@ -499,7 +508,7 @@ def crossVal2(typ, pri, margin):
 
 def crossVal3(typ, pri, margin, rCombs):
 	trainFiles = ["CVSplits/training00.data", "CVSplits/training01.data", "CVSplits/training02.data", "CVSplits/training03.data", "CVSplits/training04.data"]
-	ep = 3
+	ep = 10
 	allAvsSds = []
 	for r in rCombs:
 		rccuracy = []
@@ -1092,7 +1101,8 @@ def epoch5(c,ws, trainE, lRate, count, cArg):
 def epoch6(c,ws, trainE, lRate, count, cArg):
 	print("Loading...")
 	lr = 1 - lRate
-	exp4001 = math.exp(400) + 1
+	threshold = 500
+	exp4001 = math.exp(threshold) + 1
 	for ex in trainE:
 		#print(c)
 		label = ex[0][0]
@@ -1105,7 +1115,7 @@ def epoch6(c,ws, trainE, lRate, count, cArg):
 		#ws[0] = 2/cArg*ws[0] - ((label*1*math.exp(-label*w[0]*1))/(1+ math.exp(-label*w[0]*1)))
 		
 		for i in range(len(ws)):
-			ws[i] = lr*2*ws[i]/cArg
+			ws[i] = (1-2*lRate/cArg)*ws[i]
 			c += 1
 		
 		#ywx = label * result
@@ -1117,18 +1127,18 @@ def epoch6(c,ws, trainE, lRate, count, cArg):
 			#print(label*ex[i][1]*ws[ex[i][0]])
 			tempval = label*ex[i][1]*ws[ex[i][0]]
 			#print(tempval)
-			if(tempval < 400):
-				ws[ex[i][0]] = ws[ex[i][0]]- lRate*label*ex[i][1]/(math.exp(tempval) + 1)
+			if(tempval < threshold):
+				ws[ex[i][0]] = ws[ex[i][0]] + lRate*label*ex[i][1]/(math.exp(tempval) + 1)
 			else:
-				ws[ex[i][0]] = ws[ex[i][0]]- lRate*label*ex[i][1]/(exp4001)
+				ws[ex[i][0]] = ws[ex[i][0]] + lRate*label*ex[i][1]/(exp4001)
 		#ws[0] += lRate*label*cArg
 		#ws[0] -= ((label*1*math.exp(-label*ws[0]*1))/(1+ math.exp(-label*ws[0]*1)))
 		#print(label*ws[0])
 		tempval = label*ws[0]
-		if(tempval< 400):
-			ws[0] = ws[0] - lRate*label/(math.exp(tempval)+1)
+		if(tempval< threshold):
+			ws[0] = ws[0] + lRate*label/(math.exp(tempval)+1)
 		else:
-			ws[0] = ws[0] - lRate*label/(exp4001)
+			ws[0] = ws[0] + lRate*label/(exp4001)
 		#count += 1
 	return c,ws, count 
 
