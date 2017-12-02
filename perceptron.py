@@ -26,8 +26,8 @@ def main(argv):
 	test(devDatasets, w)
 	test(testDatasets, w)
 	'''
-	fr = 9
-	to = 10
+	fr = 5
+	to = 11
 	if len(argv) > 1:
 		fr = int(argv[0])
 		to = int(argv[1])
