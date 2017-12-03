@@ -31,4 +31,4 @@ Bagged Forest: /usr/local/bin/python3.6 perceptron.py 8 9
 SVM over Trees: /usr/local/bin/python3.6 perceptron.py 9 10
 LogReg over Trees: /usr/local/bin/python3.6 perceptron.py 10 11
 
-Or you can reduce the amount of epochs of cross validation by changing the value of variable "ep" in the "crossVal2" function in perceptron.py. 
+Or you can reduce the amount of epochs of cross validation by changing the value of variable "ep" in the "crossVal3" function in perceptron.py. 
